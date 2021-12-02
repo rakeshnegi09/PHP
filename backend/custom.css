@@ -1,3 +1,48 @@
 .langdiv {
     display: none !important;
 }
+#hero_intro {
+    background: #448044;
+    /* height: 62px; */
+    text-align: center;
+    color: #fff;
+    z-index: 5000;
+    font-size: 26px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    padding: 10px;
+}
+#hero_intro:before {
+    content: '';
+    position: absolute;
+    margin-top: -15px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 15px solid #fefefe;
+    left: 50%;
+    margin-left: -20px;
+}
+.slidealert {
+    display: none;
+}
+
+#myModalSuccess .modal-content{
+	padding-top: 76px;
+    padding-bottom: 70px;
+    margin: 0%;
+    background-color: #66A262 !important;
+    color: #ffff;
+}
+
+#myModalSuccess .modal-content p{
+	text-align:center;
+	padding:10px;
+}
+
+#myModalSuccess .btn-primary, myModal .btn-primary  {
+    background-color: #ffffff !important;
+    border-color: #66A262 !important;
+    color: #66A262 !important;
+    transition: .3s;
+}
+

@@ -245,6 +245,7 @@ if(!function_exists('get_covid_screening')) {
         $CI->db->select('*');
         $CI->db->from('covid_screening');
         $CI->db->where('student_id', $student_id);    
+		$CI->db->order_by("date","desc");
         $query = $CI->db->get();
         $result = $query->result();
         return $result;
@@ -260,6 +261,8 @@ if(!function_exists('get_covid_screening_details')) {
         $CI->db->from('covid_screening');
         $CI->db->where('student_id', $student_id);    
         $CI->db->where('id', $id);    
+        $CI->db->where('id', $id); 
+		$CI->db->order_by("date","desc");
         $query = $CI->db->get();
         $result = $query->result();
         return $result;

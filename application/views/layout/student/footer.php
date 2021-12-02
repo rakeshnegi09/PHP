@@ -6,13 +6,21 @@
     });
 </script>
 <?php } ?>
+<?php if($this->session->flashdata('success_covid') == "success"){ ?>
+<script type="text/javascript">
+    $(window).on('load', function() {
+        $('#myModalSuccess').modal('show');
+		
+    });
+</script>
+<?php } ?>
 <style>
 img.image_width {
 	width:50% !important;
 }
 </style>
-<!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg"data-target="#myModal">Open Modal</button>
+
+
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog"  data-backdrop="static" data-keyboard="false" data-toggle="modal" >
@@ -20,50 +28,87 @@ img.image_width {
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-	   <div class="form-top">
-        <div class="text-center">
+      <div class="form-top">
+        <div class="text-center covid_header">
 			<img class="image_width" src="<?php echo base_url(); ?>uploads/school_content/admin_logo/<?php $this->setting_model->getAdminlogo();?>" />
 		</div>
 		</div>
-      </div>
 	  <form action="<?= base_url('user/user/add_covid_screening');?>" method="POST">
-      <div class="modal-body">
-			<div class="container form-group">
-				<label class="radio-inline">
-			    question to be asked
-			   </label>
-			   <label class="radio-inline">
-			   <input type="radio" required name="covid[question1]" id="Radios1" value="Yes">
-			   Yes
-			   </label>
-			   <label class="radio-inline">
-			   <input type="radio" required name="covid[question1]" id="Radios2" value="No">
-			   No
-			   </label>
-			</div>
-			<div class="container form-group">
-				<label class="radio-inline">
-			    question to be asked
-			   </label>
-			   <label class="radio-inline">
-			   <input type="radio" required name="covid[question2]" id="Radios1" value="Yes">
-			   Yes
-			   </label>
-			   <label class="radio-inline">
-			   <input type="radio" required name="covid[question2]" id="Radios2" value="No">
-			   No
-			   </label>
-			</div>
-      </div>
-      <div class="modal-footer">
+      <div class="modal-body covid">
+	  <div class="row">
+	  <div id="hero_intro">
+		<div class="quote">COVID-19 Daily Screening Form</div>
+		</div>
+		
+	  <?php $question =array(
+				"Do you have a fever today?",
+				"Do you have a cough today?",
+				"Do you have a sore throat today?",
+				"Do you have muscle or body aches today?",
+				"Experiencing shortness of breath?",
+				"Experience any loss of taste and smell?",
+				"Are you experiencing any of the following symptoms : Vomiting, diarrhea, nausea, Fatigue, Weakness and Tiredness?",
+				"Have you been in contact with someone that shows COVID-19 Symptoms?",
+				"Were you in contact with someone that has COVID-19?",				
+				);
+			foreach($question as $key=>$row){ ?>
+		
+			<div class="form-group row">
+				 <label class="col-sm-9"><?= $row;?></label>
+				 <div class="col-sm-3">
+					<label class="radio-inline">
+					<input type="radio" name="covid[question<?= $key;?>]" value="Yes" >Yes</label>
+					<label class="radio-inline">
+					<input type="radio" name="covid[question<?= $key;?>]" value="No" checked="">No</label>
+				 </div>
+			 </div>
+			 <?php } ?>
+			
+		</div>
+ <div class="text-right">
         <input type="submit" value="Submit" name="covid_screening" class="btn btn-primary" >
+      </div>		
       </div>
+      
 	  </form>
     </div>
 
   </div>
 </div>
+
+<div id="myModalSuccess" class="modal fade" role="dialog"  data-backdrop="static" data-keyboard="false" data-toggle="modal" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+     <div class="text-center covid_header">
+			<h4>HOW TO UNDERSTAND YOUR RESULTS</h4>
+		</div>
+      <div class="modal-body covid">
+	  <div class="row">
+	 
+
+<p>If you answered NO to all questions then you may attend classes at 
+your respective campus today.</p>
+
+
+<p>If you answered YES to 2 or more of these questions, please report
+to your lecturer for further instructions.</p>
+
+
+<p>Thank you for your co-operation in this regard.</p>
+		</div>
+ <div class="text-center">
+       <a href="#" data-dismiss="modal" class="btn btn-primary">FINISH</a>
+      </div>		
+      </div>
+      
+	  </form>
+    </div>
+
+  </div>
+</div>
+
 <footer class="main-footer">
     &copy;  <?php echo date('Y'); ?> 
     <?php echo $this->customlib->getAppName(); ?> <?php echo $this->customlib->getAppVersion(); ?>

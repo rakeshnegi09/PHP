@@ -74,10 +74,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'sql50.jnb2.host-h.net',
-	'username' => 'swartcjpqz_3',
-	'password' => 'e3Dv0QeD30Lyb2rUH9jY',
-	'database' => 'swartcjpqz_db3',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'cheaf',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

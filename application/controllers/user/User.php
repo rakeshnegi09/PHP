@@ -817,9 +817,29 @@ class User extends Student_Controller
 			$this->form_validation->set_rules('covid[question1]', 'question to be asked','required', 'trim|required|xss_clean');
 	
 			if ($this->form_validation->run() == true) {
+				$question =array(
+					"Do you have a fever today?",
+					"Do you have a cough today?",
+					"Do you have a sore throat today?",
+					"Do you have muscle or body aches today?",
+					"Experiencing shortness of breath?",
+					"Experience any loss of taste and smell?",
+					"Are you experiencing any of the following symptoms : Vomiting, diarrhea, nausea, Fatigue, Weakness and Tiredness?",
+					"Have you been in contact with someone that shows COVID-19 Symptoms?",
+					"Were you in contact with someone that has COVID-19?",				
+					);
+					$count=0;
+				foreach($_POST['covid'] as $key=>$row){
+					$csv_row[] = $question[$count];
+					$csv_row[] = $row;			
+					$final_data[] = $csv_row;
+					$csv_row = array();
+					$count++;
+				}
 				
-				$data = array("student_id"=>$_SESSION['student']['student_id'],"data"=>json_encode($_POST['covid']));
+				$data = array("student_id"=>$_SESSION['student']['student_id'],"data"=>json_encode($final_data));
 				$this->db->insert('covid_screening',$data);
+				$this->session->set_flashdata('success_covid', 'success');
 				redirect($_SERVER['HTTP_REFERER']);
 			}
 		}
@@ -830,13 +850,12 @@ class User extends Student_Controller
 		$data = get_covid_screening_details($id);
 		$data = json_decode($data[0]->data);
 		$csv_row = array();
-		foreach($data as $row){
-			$csv_row[] = "quesion to be asked";
-			$csv_row[] = $row;			
-			$final_data[] = $csv_row;
+		
+		foreach($data as $key=>$row){
+						
+			$final_data[] = $row;
 			$csv_row = array();
 		}
-		
 		header("Content-type: application/csv");
 		header("Content-Disposition: attachment; filename=\"test".".csv\"");
 		header("Pragma: no-cache");
