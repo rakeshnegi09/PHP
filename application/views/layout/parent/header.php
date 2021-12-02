@@ -22,6 +22,7 @@
             <!-- Theme RTL style -->
             <link rel="stylesheet" href="<?php echo base_url(); ?>backend/rtl/dist/css/AdminLTE-rtl.min.css" />
             <link rel="stylesheet" href="<?php echo base_url(); ?>backend/rtl/dist/css/ss-rtlmain.css">
+			<link href="<?php echo base_url(); ?>backend/custom.css" rel="stylesheet">
             <link rel="stylesheet" href="<?php echo base_url(); ?>backend/rtl/dist/css/skins/_all-skins-rtl.min.css" />
 
             <?php

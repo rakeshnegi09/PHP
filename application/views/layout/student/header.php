@@ -45,6 +45,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>backend/dist/css/dropify.min.css">
         <!--file nprogress-->
         <link href="<?php echo base_url(); ?>backend/dist/css/nprogress.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>backend/custom.css" rel="stylesheet">
         <!--print table-->
         <link href="<?php echo base_url(); ?>backend/dist/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>backend/dist/datatables/css/buttons.dataTables.min.css" rel="stylesheet">
@@ -146,7 +147,7 @@ if ($this->config->item('SSLK') == "") {
                                    
 if($this->studentmodule_lib->hasActive('multi_class')){
    ?>
-       <li class="cal15"><a href="#" data-toggle="modal" data-target="#classSwitchModal"><i class="fa fa-exchange" aria-hidden="true"></i></a></li>
+       <!--li class="cal15"><a href="#" data-toggle="modal" data-target="#classSwitchModal"><i class="fa fa-exchange" aria-hidden="true"></i></a></li-->
    <?php  
 
 }

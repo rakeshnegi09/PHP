@@ -15,7 +15,7 @@
         <?php
           $this->load->view('layout/theme');
          ?>
-       
+       <link href="<?php echo base_url(); ?>backend/custom.css" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo base_url(); ?>backend/dist/css/font-awesome.min.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>backend/dist/css/ionicons.min.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>backend/plugins/iCheck/flat/blue.css">
