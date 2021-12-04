@@ -316,20 +316,20 @@ if($this->studentmodule_lib->hasActive('multi_class')){
                             
                             ?>
 
-                            <li class="<?php echo set_Topmenu('syllabus'); ?>"><a href="<?php echo base_url(); ?>user/syllabus"><i class="fa fa fa-list-alt ftlayer"></i> <span><?php echo $this->lang->line('lesson_plan'); ?></span></a></li>
+                            <!--li class="<?php echo set_Topmenu('syllabus'); ?>"><a href="<?php echo base_url(); ?>user/syllabus"><i class="fa fa fa-list-alt ftlayer"></i> <span><?php echo $this->lang->line('lesson_plan'); ?></span></a></li-->
                         
                         <?php } if ($this->studentmodule_lib->hasActive('syllabus_status')) {
                             ?>
-                             <li class="<?php echo set_Topmenu('syllabus/status'); ?>"><a href="<?php echo base_url(); ?>user/syllabus/status"><i class="fa fa-list-ol ftlayer"></i> <span><?php echo $this->lang->line('syllabus')." ".$this->lang->line('status'); ?></span></a></li>
+                             <!--li class="<?php echo set_Topmenu('syllabus/status'); ?>"><a href="<?php echo base_url(); ?>user/syllabus/status"><i class="fa fa-list-ol ftlayer"></i> <span><?php echo $this->lang->line('syllabus')." ".$this->lang->line('status'); ?></span></a></li-->
                             <?php
                         }
                         if ($this->studentmodule_lib->hasActive('homework')) {
                             ?>
-                            <li class="<?php echo set_Topmenu('Homework'); ?>"><a href="<?php echo base_url(); ?>user/homework"><i class="fa fa-flask ftlayer"></i> <span><?php echo $this->lang->line('homework'); ?></span></a></li>
+                            <!--li class="<?php echo set_Topmenu('Homework'); ?>"><a href="<?php echo base_url(); ?>user/homework"><i class="fa fa-flask ftlayer"></i> <span><?php echo $this->lang->line('homework'); ?></span></a></li-->
                             <?php
                         }  if ($this->studentmodule_lib->hasActive('online_examination')) {
                             ?>
-                        <li class="treeview <?php echo set_Topmenu('Onlineexam'); ?>"><a href="<?php echo site_url('user/onlineexam'); ?>"><i class="fa fa-rss ftlayer"></i> <span><?php echo $this->lang->line('online')." ".$this->lang->line('exam');?></span></a></li>
+                        <!--li class="treeview <?php echo set_Topmenu('Onlineexam'); ?>"><a href="<?php echo site_url('user/onlineexam'); ?>"><i class="fa fa-rss ftlayer"></i> <span><?php echo $this->lang->line('online')." ".$this->lang->line('exam');?></span></a></li-->
 
                              
                         <?php }
@@ -340,17 +340,17 @@ if($this->studentmodule_lib->hasActive('multi_class')){
                         <?php }
                         if ($this->studentmodule_lib->hasActive('download_center')) {
                             ?>
-                            <li class="treeview <?php echo set_Topmenu('Downloads'); ?>">
+                            <!--li class="treeview <?php echo set_Topmenu('Downloads'); ?>">
                                 <a href="#">
                                     <i class="fa fa-download ftlayer"></i> <span><?php echo $this->lang->line('download_center'); ?></span> <i class="fa fa-angle-left pull-right"></i>
                                 </a> 
                                 <ul class="treeview-menu">
-                                    <li class="<?php echo set_Submenu('content/assignment'); ?>"><a href="<?php echo base_url(); ?>user/content/assignment"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('assignments'); ?></a></li>
+                                    <!--li class="<?php echo set_Submenu('content/assignment'); ?>"><a href="<?php echo base_url(); ?>user/content/assignment"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('assignments'); ?></a></li>
                                     <li class="<?php echo set_Submenu('content/studymaterial'); ?>"><a href="<?php echo base_url(); ?>user/content/studymaterial"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('study_material'); ?></a></li>
                                     <li class="<?php echo set_Submenu('content/syllabus'); ?>"><a href="<?php echo base_url(); ?>user/content/syllabus"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('syllabus'); ?></a></li>
                                     <li class="<?php echo set_Submenu('content/other'); ?>"><a href="<?php echo base_url(); ?>user/content/other"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('other_downloads'); ?></a></li>
                                 </ul>
-                            </li>
+                            </li-->
                             <?php
                         }
                         if ($this->studentmodule_lib->hasActive('attendance')) {
@@ -361,16 +361,16 @@ if($this->studentmodule_lib->hasActive('multi_class')){
                       
                         if ($this->studentmodule_lib->hasActive('examinations')) {
                             ?>
-                        <li class="treeview <?php echo set_Topmenu('Examinations'); ?>">
+                        <!--li class="treeview <?php echo set_Topmenu('Examinations'); ?>">
                                 <a href="#">
                                     <i class="fa fa-map-o ftlayer"></i> <span><?php echo $this->lang->line('examinations'); ?></span> <i class="fa fa-angle-left pull-right"></i>
                                 </a>
                                 <ul class="treeview-menu">
                                 
-                                    <li class="<?php echo set_Submenu('examSchedule/index'); ?>"><a href="<?php echo base_url(); ?>user/examschedule"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('exam_schedule'); ?></a></li>
+                                    <!--li class="<?php echo set_Submenu('examSchedule/index'); ?>"><a href="<?php echo base_url(); ?>user/examschedule"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('exam_schedule'); ?></a></li>
                                       <li class="<?php echo set_Submenu('examresult/index'); ?>"><a href="<?php echo base_url(); ?>user/exam/examresult"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('exam')." ".$this->lang->line('result'); ?></a></li>
                                 </ul>
-                            </li>    
+                            </li-->    
                         <?php
                        }
                         if ($this->studentmodule_lib->hasActive('notice_board')) {
@@ -396,7 +396,7 @@ if($this->studentmodule_lib->hasActive('multi_class')){
 
                         if ($this->studentmodule_lib->hasActive('teachers_rating')) {
                             ?>                       
-                            <li class="<?php echo set_Topmenu('Teachers'); ?>"><a href="<?php echo base_url(); ?>user/teacher"><i class="fa fa-user-secret ftlayer"></i> <span><?php echo $this->lang->line('teachers')." ".$this->lang->line('reviews'); ?></span></a></li>
+                            <!--li class="<?php echo set_Topmenu('Teachers'); ?>"><a href="<?php echo base_url(); ?>user/teacher"><i class="fa fa-user-secret ftlayer"></i> <span><?php echo $this->lang->line('teachers')." ".$this->lang->line('reviews'); ?></span></a></li-->
                             <?php
                         }
 
@@ -421,12 +421,12 @@ if($this->studentmodule_lib->hasActive('multi_class')){
                         }
                         if ($this->studentmodule_lib->hasActive('transport_routes')) {
                             ?>
-                            <li class="<?php echo set_Submenu('route/index'); ?>"><a href="<?php echo base_url(); ?>user/route"><i class="fa fa-bus ftlayer"></i> <span><?php echo $this->lang->line('transport_routes'); ?></span></a></li>
+                            <!--li class="<?php echo set_Submenu('route/index'); ?>"><a href="<?php echo base_url(); ?>user/route"><i class="fa fa-bus ftlayer"></i> <span><?php echo $this->lang->line('transport_routes'); ?></span></a></li-->
                             <?php
                         }
                         if ($this->studentmodule_lib->hasActive('hostel_rooms')) {
                             ?>
-                            <li class="<?php echo set_Submenu('hostelroom/index'); ?>"><a href="<?php echo base_url(); ?>user/hostelroom"><i class="fa fa-building-o ftlayer"></i> <span><?php echo $this->lang->line('hostel_rooms'); ?></span></a></li>
+                            <!--li class="<?php echo set_Submenu('hostelroom/index'); ?>"><a href="<?php echo base_url(); ?>user/hostelroom"><i class="fa fa-building-o ftlayer"></i> <span><?php echo $this->lang->line('hostel_rooms'); ?></span></a></li-->
 
                         <?php }
                         ?>
