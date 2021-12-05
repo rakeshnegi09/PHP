@@ -55,7 +55,7 @@
  */
     ini_set('max_execution_time', 300); // 0 = Unlimited
 
-	define('ENVIRONMENT', 'production');
+	define('ENVIRONMENT', 'development');
 	
 	
 	if( ! ini_get('date.timezone') )

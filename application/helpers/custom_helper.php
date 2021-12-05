@@ -239,9 +239,11 @@ if (!function_exists('check_covid_screening')) {
 }
 
 if(!function_exists('get_covid_screening')) {
-    function get_covid_screening() {
+    function get_covid_screening($student_id= null) {
         $CI = &get_instance();
-		$student_id = $_SESSION['student']['student_id'];
+		if(empty($student_id)){
+			$student_id = $_SESSION['student']['student_id'];
+		}	
         $CI->db->select('*');
         $CI->db->from('covid_screening');
         $CI->db->where('student_id', $student_id);    
@@ -255,16 +257,30 @@ if(!function_exists('get_covid_screening')) {
 
 if(!function_exists('get_covid_screening_details')) {
     function get_covid_screening_details($id) {
-        $CI = &get_instance();
-		$student_id = $_SESSION['student']['student_id'];
+        $CI = &get_instance();			
         $CI->db->select('*');
-        $CI->db->from('covid_screening');
-        $CI->db->where('student_id', $student_id);    
-        $CI->db->where('id', $id);    
-        $CI->db->where('id', $id); 
+        $CI->db->from('covid_screening');    
+        $CI->db->where('id', $id);  
 		$CI->db->order_by("date","desc");
         $query = $CI->db->get();
         $result = $query->result();
         return $result;
     }
 }
+
+if(!function_exists('get_important_info')) {
+    function get_important_info($id) {
+        $CI = &get_instance();			
+        $CI->db->select('*');
+        $CI->db->from('important_information')->limit(1);    
+        $CI->db->where('student_id', $id); 		
+		$CI->db->order_by("id","desc");
+        $query = $CI->db->get();
+        $result = $query->row_array()['info'];
+        return $result;
+    }
+}
+
+
+
+

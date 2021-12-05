@@ -684,12 +684,13 @@ class Student extends Admin_Controller
 
                 $fileInfo    = pathinfo($_FILES["first_doc"]["name"]);
                 $first_title = $this->input->post('first_title');
+                $doc_type = $this->input->post('doc_type');
                 $file_name   = $_FILES['first_doc']['name'];
                 $exp         = explode(' ', $file_name);
                 $imp         = implode('_', $exp);
                 $img_name    = $uploaddir . basename($imp);
                 move_uploaded_file($_FILES["first_doc"]["tmp_name"], $img_name);
-                $data_img = array('student_id' => $student_id, 'title' => $first_title, 'doc' => $imp);
+                $data_img = array('student_id' => $student_id, 'title' => $first_title, 'doc' => $imp,'doc_type' => $doc_type);
                 $this->student_model->adddoc($data_img);
 
             }
@@ -2315,5 +2316,55 @@ class Student extends Admin_Controller
         $page                 = $this->load->view('reports/_getStudentByClassSection', $data, true);
         echo json_encode(array('status' => 1, 'page' => $page));
     }
+	
+	
+	public function download_covid_screening($id){
+	   
+		$data = get_covid_screening_details($id);
+		$data = json_decode($data[0]->data);
+		$csv_row = array();
+		
+		foreach($data as $key=>$row){
+						
+			$final_data[] = $row;
+			$csv_row = array();
+		}
+		header("Content-type: application/csv");
+		header("Content-Disposition: attachment; filename=\"test".".csv\"");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+
+		$handle = fopen('php://output', 'w');
+
+		foreach ($final_data as $data_array) {
+			fputcsv($handle, $data_array);
+		}
+			fclose($handle);
+		exit;
+	}	
+	
+	public function add_important_info(){
+		
+		$student_id = $this->input->post('student_id');
+		$info = $this->input->post('info');
+		$added_by = $_SESSION['admin']['id'];
+		$this->form_validation->set_rules('info','important_info', 'trim|required|xss_clean');
+       
+        if ($this->form_validation->run() == false) {
+            $msg = array(
+                'info' => "This field is required",
+            );
+            $array = array('status' => 'fail', 'error' => $msg, 'message' => '');
+        } else {
+			$array = array(
+				"info"=>$info,
+				"student_id"=>$student_id,
+				"added_by"=>$added_by,
+			);
+			$this->db->insert('important_information',$array);
+			
+		}
+		redirect('student/view/'.$student_id);
+	}
 
 }

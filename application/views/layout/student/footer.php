@@ -56,17 +56,17 @@ img.image_width {
 			<div class="form-group row">
 				 <label class="col-sm-9"><?= $row;?></label>
 				 <div class="col-sm-3">
-					<label class="radio-inline">
-					<input type="radio" name="covid[question<?= $key;?>]" value="Yes" >Yes</label>
-					<label class="radio-inline">
-					<input type="radio" name="covid[question<?= $key;?>]" value="No" checked="">No</label>
+					<label class="radio-inline custom-control-label red">
+					<input type="radio" name="covid[question<?= $key;?>]" class="custom-control-input" value="Yes" >Yes</label>
+					<label class="radio-inline custom-control-label green">
+					<input type="radio" name="covid[question<?= $key;?>]" class="custom-control-input" value="No" required>No</label>
 				 </div>
 			 </div>
 			 <?php } ?>
 			
 		</div>
  <div class="text-right">
-        <input type="submit" value="Submit" name="covid_screening" class="btn btn-primary" >
+        <input type="submit" value="Submit" name="covid_screening" class="btn btn-success" >
       </div>		
       </div>
       

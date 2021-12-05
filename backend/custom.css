@@ -45,4 +45,20 @@
     color: #66A262 !important;
     transition: .3s;
 }
+.custom-control-input:checked~.custom-control-label.green::before {
+  background-color: green;
+}
+ input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: green;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+       
+    }
 
