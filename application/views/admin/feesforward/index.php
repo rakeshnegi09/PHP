@@ -48,7 +48,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"><?php echo $this->lang->line('section'); ?></label><small class="req"> *</small>
+                                        <label for="exampleInputEmail1">Campus</label><small class="req"> *</small>
                                         <select  id="section_id" name="section_id" class="form-control" >
                                             <option value=""   ><?php echo $this->lang->line('select'); ?></option>
                                         </select>
@@ -101,15 +101,16 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                                         <tr>
                                                             <th class="text text-left"><?php echo $this->lang->line('student_name'); ?></th> 
 
-                                                            <th class="text text-left"><?php echo $this->lang->line('admission_no'); ?></th>
+                                                            <th class="text text-left">Student No</th>
                                                             <?php if ($sch_setting->admission_date) { ?>
                                                                 <th class="text text-left"><?php echo $this->lang->line('admission_date'); ?></th>
                                                             <?php } if ($sch_setting->roll_no) { ?>
-                                                                <th class="text text-left"><?php echo $this->lang->line('roll_no'); ?></th>
-                                                            <?php } if ($sch_setting->father_name) { ?>
-                                                                <th class="text text-left"><?php echo $this->lang->line('father_name'); ?></th><?php } ?>
-
-                                                            <th class="text-right"><?php echo $this->lang->line('balance'); ?> <span><?php echo "(" . $currency_symbol . ")"; ?></span></th>
+                                                                <th class="text text-left">City & Guild No</th>
+                                                            <?php }  ?>
+                                                            
+                                                            <th class="">Arrear Amount<span><?php echo "(" . $currency_symbol . ")"; ?></span></th>
+															<th class="">Due Date</th>
+															<th class="">Account in Arrear</th>
                                                         </tr>
 
                                                     </thead> 
@@ -130,12 +131,19 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                                                     <td><?php echo $due_fee_value->admission_date; ?></td>
                                                                 <?php } if ($sch_setting->roll_no) { ?>
                                                                     <td><?php echo $due_fee_value->roll_no; ?></td>
-                                                                <?php } if ($sch_setting->father_name) { ?>
-                                                                    <td><?php echo $due_fee_value->father_name; ?></td>
-                                                                <?php } ?>
-                                                                <td class="text text-right">
-
-                                                                    <input type="text" name="amount[<?php echo $i; ?>]" class="form-control tddm200" value="<?php echo $due_fee_value->balance; ?>">
+                                                                <?php }  ?>
+                                                                   
+                                                                <td class="text ">
+                                                                    <input type="text" name="amount[<?php echo $i; ?>]" class="form-control " value="<?php echo $due_fee_value->balance; ?>">
+                                                                </td>
+																<td class="text">
+                                                                   <input id="due_date_new" name="due_date_new[<?php echo $i; ?>]" placeholder="yyyy/mm/dd" type="text" class="form-control date " value="<?php if(!empty(fees_due_date($due_fee_value->student_session_id)) && fees_due_date($due_fee_value->student_session_id) != "0000-00-00" ){ echo date('Y/m/d',strtotime(fees_due_date($due_fee_value->student_session_id))); } ?>" autocomplete="off">
+                                                                </td>
+																<td class="text text-center">
+																<?php if(!fees_arrear($due_fee_value->student_session_id)){ ?>
+																<?php } ?>
+																  <input type='hidden' value='NO' name='in_arrear[<?php echo $i; ?>]'>
+                                                                   <input id="dob" name="in_arrear[<?php echo $i; ?>]" placeholder="" <?php if(fees_arrear($due_fee_value->student_session_id)){ echo "checked"; } ?> type="checkbox"  value="YES" autocomplete="off">
                                                                 </td>
                                                             </tr>
                                                             <?php

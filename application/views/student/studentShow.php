@@ -171,14 +171,22 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat(); ?>
                         <b>Accommodation</b> <a class="pull-right text-aqua"><?php echo $student["hostel_name"]; ?></a>
                      </li>
 					 <li class="list-group-item">
-                        <b>Arrears</b> <a class="pull-right text-aqua"></a>
+					<?php $data = fees_arrear_amount($student['id']); 
+						if($data['in_arrear'] == "YES"){
+					?>
+                        <b>Arrears</b> 
+					<?php }else{ ?>
+						<b>Fees Due</b>
+					<?php } ?>
+						<a class="pull-right text-aqua">
+						<?php 
+							if($data['in_arrear'] == "YES"){
+								echo "<strong class='text-danger'>R ".$data['amount']."</strong>";
+							}else{
+								echo "R ".$data['amount'];
+							}
+						?></a>
                      </li>
-                     <?php if ($sch_setting->rte) { ?>
-                     <li class="list-group-item">
-                        <b><?php echo $this->lang->line("rte"); ?></b> 
-						<a class="pull-right text-aqua"><?php echo $student["rte"]; ?></a>
-                     </li>
-                     <?php } ?>
 				</ul>
 			  </div>
 			</div>
@@ -965,10 +973,21 @@ if (!empty($cutom_fields_data)) {
       </div>
 	  
 	  <div class="tab-pane" id="wel">
-		<p>WEL Not done Yet</p>
+		<div class="timeline-header no-border">
+			 <div class="table-responsive" style="clear: both;">
+		<?php
+			echo display_custom_fields('students', $student['id']);
+		?>	
+<p>WEL Not done Yet</p>
+			</div>
+		</div>
 	  </div>
 	  <div class="tab-pane" id="results">
+		<div class="timeline-header no-border">
+			 <div class="table-responsive" style="clear: both;">
 		<p>Results Not done Yet</p>
+			</div>
+		</div>
 	  </div>
 	  <div class="tab-pane" id="covid">
 						<div class="timeline-header no-border">

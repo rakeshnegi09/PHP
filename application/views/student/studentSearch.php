@@ -95,9 +95,7 @@ $count++;
 
                                             <th><?php echo $this->lang->line('student_name'); ?></th>
                                             <th><?php echo $this->lang->line('class'); ?></th>
-                                             <?php if ($sch_setting->father_name) {?>
-                                            <th><?php echo $this->lang->line('father_name'); ?></th>
-                                            <?php }?>
+                                             
                                             <th><?php echo $this->lang->line('date_of_birth'); ?></th>
                                             <th><?php echo $this->lang->line('gender'); ?></th>
                                             <?php if ($sch_setting->category) {

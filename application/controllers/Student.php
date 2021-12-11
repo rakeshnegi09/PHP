@@ -177,7 +177,7 @@ class Student extends Admin_Controller
         }
         $data['exam_result'] = $this->examgroupstudent_model->searchStudentExams($student['student_session_id'], true, true);
         $data['exam_grade']  = $this->grade_model->getGradeDetails();
-
+		
         $this->load->view('layout/header', $data);
         $this->load->view('student/studentShow', $data);
         $this->load->view('layout/footer', $data);
@@ -1492,6 +1492,7 @@ class Student extends Admin_Controller
             $this->session->set_flashdata('msg', '<div student="alert alert-success text-left">' . $this->lang->line('update_message') . '</div>');
             redirect('student/search');
         }
+
     }
 
     public function bulkdelete()
@@ -2130,7 +2131,7 @@ class Student extends Admin_Controller
                 $row[] = "<a href='" . base_url() . "student/view/" . $student->id . "'>" . $this->customlib->getFullName($student->firstname, $student->middlename, $student->lastname, $sch_setting->middlename, $sch_setting->lastname) . "</a>";
                 $row[] = $student->class . "(" . $student->section . ")";
                 if ($sch_setting->father_name) {
-                    $row[] = $student->father_name;
+                  //  $row[] = $student->father_name;
                 }
                
                 $row[] = $this->customlib->dateformat($student->dob);          
@@ -2301,6 +2302,7 @@ class Student extends Admin_Controller
             "recordsFiltered" => intval($resultlist->recordsFiltered),
             "data"            => $dt_data,
         );
+
         echo json_encode($json_data);
     }
 

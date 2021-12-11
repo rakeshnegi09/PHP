@@ -67,12 +67,14 @@ class Feesforward extends Admin_Controller {
                     }
                 }
             } else if ($action == 'fee_submit') {
+
                 $student_Array = json_decode($this->findPreviousBalanceFees($pre_session->id, $class_id, $section_id, $current_session));
 
                 $data['student_due_fee'] = $student_Array->student_Array;
                 $data['is_update'] = $student_Array->is_update;
                 $this->form_validation->set_rules('due_date', $this->lang->line('date'), 'required');
                 $counter = $this->input->post('student_counter');
+
                 if ($this->form_validation->run() == TRUE) {
 
                     $due_date = date('Y-m-d', $this->customlib->datetostrtotime($this->input->post('due_date')));
@@ -82,6 +84,8 @@ class Feesforward extends Admin_Controller {
                         $student_array['student_session_id'] = $this->input->post('student_sesion[' . $count_value . ']');
                         $student_array['amount'] = $this->input->post('amount[' . $count_value . ']');
                         $student_array['is_system'] = 1;
+                        $student_array['due_date'] = $this->input->post('due_date_new[' . $count_value . ']');
+                        $student_array['in_arrear'] = $this->input->post('in_arrear[' . $count_value . ']');
                         $student_array['fee_session_group_id'] = 0;
                         $student_data[] = $student_array;
                     }
@@ -94,7 +98,7 @@ class Feesforward extends Admin_Controller {
             }
         }
 
-
+		
         $this->load->view('layout/header', $data);
         $this->load->view('admin/feesforward/index', $data);
         $this->load->view('layout/footer', $data);

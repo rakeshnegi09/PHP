@@ -1,3 +1,4 @@
+<?php ignore_user_abort(true); ?>
 <style type="text/css">
    @media print
    {
@@ -79,20 +80,29 @@
                         <b>Accommodation</b> <a class="pull-right text-aqua"><?php echo $student[
                             "hostel_name"
                         ]; ?> <br><?php
-//echo $student['room_type'];
-?> <br><?php
-//echo $student['room_no'];
-?></a>
+					//echo $student['room_type'];
+					?> <br><?php
+					//echo $student['room_no'];
+					?></a>
                      </li>
 					 <li class="list-group-item">
-                        <b>Arrears</b> <a class="pull-right text-aqua"></a>
+					<?php $data = fees_arrear_amount($_SESSION['student']['student_id']); 
+						if($data['in_arrear'] == "YES"){
+					?>
+                        <b>Arrears</b> 
+					<?php }else{ ?>
+						<b>Fees Due</b>
+					<?php } ?>
+						<a class="pull-right text-aqua">
+						<?php 
+							if($data['in_arrear'] == "YES"){
+								echo "<strong class='text-danger'>R ".$data['amount']."</strong>";
+							}else{
+								echo "R ".$data['amount'];
+							}
+						?></a>
                      </li>
-                     <?php if ($sch_setting->rte) { ?>
-                     <li class="list-group-item">
-                        <b><?php echo $this->lang->line("rte"); ?></b> 
-						<a class="pull-right text-aqua"><?php echo $student["rte"]; ?></a>
-                     </li>
-                     <?php } ?>
+                   
                   </ul>
                </div>
 				

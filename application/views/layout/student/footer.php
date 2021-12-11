@@ -1,4 +1,5 @@
-<?php if(empty(check_covid_screening())){?>
+<?php 
+if(empty(check_covid_screening())){?>
 <script type="text/javascript">
     $(window).on('load', function() {
         $('#myModal').modal('show');
@@ -14,13 +15,88 @@
     });
 </script>
 <?php } ?>
+<?php if(empty(get_monthly_info($_SESSION['student']['student_id']))){?>
+<script type="text/javascript">
+    $(window).on('load', function() {
+        $('#myModalmonthly').modal('show');
+		
+    });
+</script>
+<?php } ?>
+<?php if(fees_arrear($_SESSION['student']['student_id'])){ ?>
+<script type="text/javascript">
+    $(window).on('load', function() {
+        $('#myModalArrear').modal('show');
+		$('#myModalArrear').modal({backdrop: 'static', keyboard: false})  
+    });
+</script>
+<?php } ?>
 <style>
 img.image_width {
-	width:50% !important;
+	width: 34% !important;
+    padding: 22px;
+}
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px; /* Adjusts for spacing */
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }
 </style>
 
+	<!-- Modal -->
+  <div class="modal fade" id="myModalArrear" data-backdrop="static" data-keyboard="false"  role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+         <div class="form-top">
+        <div class="text-center covid_header">
+			<img class="image_width" src="<?php echo base_url(); ?>uploads/school_content/admin_logo/<?php $this->setting_model->getAdminlogo();?>" />
+		</div>
+		</div>
+        <div class="modal-body p-3 mb-2 text-center success" style="background:#438044">
+          <p style="color:#ffff">Your account is in arrear.</p>
+          <p style="color:#ffff">Please contact the finnace department at 015 491 1226</p>
+          <p style="color:#ffff">or whatsapp at 066 008 6821</p>
+          <p style="color:#ffff"><?php $data = fees_arrear($_SESSION['student']['student_id']);
+				echo "R ".$data['amount'];
+			?></p>
+		   <a href="mailto:" class="btn btn-primary" style="background:white;color:#438044">Send Mail</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="myModalmonthly" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+         <div class="form-top">
+        <div class="text-center covid_header">
+			<img class="image_width" src="<?php echo base_url(); ?>uploads/school_content/admin_logo/<?php $this->setting_model->getAdminlogo();?>" />
+		</div>
+		</div>
+        <div class="modal-body p-3 mb-2 text-center success" style="background:#438044">
+          <p style="color:#ffff">Is your information up to date?</p>
+		   
+			  <a href="<?= base_url();?>/user/user/updateMonthlyinfo" class="btn btn-default" >Yes</a>
+			  <a href="mailto:<?= $sch_setting->email; ?>" class="btn btn-default" >No</a>
+			
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog"  data-backdrop="static" data-keyboard="false" data-toggle="modal" >

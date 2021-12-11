@@ -84,6 +84,7 @@ class Studentfeemaster_model extends MY_Model
 
     public function addPreviousBal($student_data, $due_date)
     {
+
         $this->db->trans_start();
         $this->db->trans_strict(false);
         $fee_group_exists = $this->feegroup_model->checkGroupExistsByName($this->balance_group);
@@ -129,8 +130,10 @@ class Studentfeemaster_model extends MY_Model
                 $student_list[]                           = $student_data[$i]['student_session_id'];
                 $student_data[$i]['id']                   = 0;
                 $student_data[$i]['fee_session_group_id'] = $parentid;
+                $student_data[$i]['due_date'] = $student_data[$i]['due_date'];
             }
             $check_insert_feemaster = $this->selectInArray($parentid, $student_list);
+
             if (!empty($check_insert_feemaster)) {
                 $insert_new_student = array();
                 foreach ($student_data as $student_key => $student_value) {

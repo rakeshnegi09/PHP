@@ -134,7 +134,6 @@ class User extends Student_Controller
         }
 
         $data['unread_notifications'] = $notification_bydate;
-
         $this->load->view('layout/student/header', $data);
         $this->load->view('user/dashboard', $data);
         $this->load->view('layout/student/footer', $data);
@@ -868,6 +867,17 @@ class User extends Student_Controller
 		}
 			fclose($handle);
 		exit;
+	}
+	
+	
+	public function updateMonthlyinfo(){
+		$data = array(
+			"student_id"=>$_SESSION['student']['student_id'],
+			"month"=>date('m'),
+			"year"=>date('Y')
+		);
+		$this->db->insert('monthly_information_update',$data);
+		redirect("user/user/dashboard");
 	}
     
 
